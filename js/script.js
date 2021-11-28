@@ -174,19 +174,14 @@ const headerAnimationBlocks = [
         }
     ]
 ]
-
-const menuLinks = [
-    '/',
-    'prices',
-    'calc',
-    'portfolio',
-    'about'
-]
-
 const activeClass = 'active';
+const preloaderBlock = document.getElementById('preloader');
 
 
 $(window).on('load', function (){
+    preloaderBlock.style.display = 'none';
+
+
     const navbarSite = $('.navbar-site');
     const navbarMenu = $('.navbar-site a');
     const activeLink = window.location.pathname;
