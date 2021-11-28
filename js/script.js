@@ -174,6 +174,59 @@ const headerAnimationBlocks = [
         }
     ]
 ]
+
+const menuLinks = [
+    '/',
+    'prices',
+    'calc',
+    'portfolio',
+    'about'
+]
+
+const activeClass = 'active';
+
+
+$(window).on('load', function (){
+    const navbarSite = $('.navbar-site');
+    const navbarMenu = $('.navbar-site a');
+    const activeLink = window.location.pathname;
+    const contentSite = $('.content-site');
+    const contentSliderBlock = $('.content-site .content-slider-block');
+    const MainParrent = $('.main-parrent');
+    const mainBlocks = $('.content-site .main');
+    
+    navbarMenu.map((menu, elem) => {
+        const element = $(elem);
+        if(element.attr('href') === activeLink && !element.hasClass('navbar-logo')){
+            goToActiveMain(element);
+        }
+    })
+
+    function goToActiveMain(element){
+        const mainID = element.attr('href') === '/' ? 'home' : element.attr('href').replace(/[/]/g, '');
+        const IDName = `main__${mainID}`;
+        MainParrent.removeClass(activeClass);
+        navbarMenu.removeClass(activeClass);
+
+        const main = mainBlocks.map((index, elm) => {
+            if($(elm).attr('id') === IDName){
+                return elm;
+            }
+        });
+        const tranformCss = (-main.offset().left + navbarSite.offset().left) - 62;
+        contentSliderBlock.css('transform', `translateX(${tranformCss}px)`);
+        element.addClass(activeClass)
+
+        setTimeout(() => {
+            $(`#${IDName}`).parent('.main-parrent').addClass(activeClass);
+        }, 1000)
+
+    }
+})
+
+
+
+
 function makeid(length) {
     let result = '';
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

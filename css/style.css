@@ -73,26 +73,50 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; }
+  overflow: hidden; }
+  .content-site .content-slider-block {
+    width: auto;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-transition: 1s;
+    transition: 1s; }
+  .content-site .main-parrent {
+    max-width: 1000px;
+    height: calc(100vh - 165px);
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    margin-top: 180px;
+    margin-bottom: 20px; }
+    .content-site .main-parrent.active {
+      z-index: 1; }
+      .content-site .main-parrent.active .main {
+        -webkit-transform: rotateX(0deg) translateY(0);
+                transform: rotateX(0deg) translateY(0);
+        z-index: 1; }
   .content-site .main {
-    width: 80%;
-    height: 80%;
+    width: 1000px;
+    height: 100%;
     background: #8f8f8f05;
     border-radius: 19px;
     -webkit-box-shadow: 0px 0px 9px #00000070;
             box-shadow: 0px 0px 9px #00000070;
     -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
-    margin-top: 110px;
-    position: relative; }
+    position: relative;
+    margin: 0 20px;
+    padding-top: 35px;
+    -webkit-transform: rotateX(50deg) translateY(-160px);
+            transform: rotateX(50deg) translateY(-160px);
+    -webkit-transition: 1s;
+    transition: 1s; }
     @media (max-width: 520px) {
       .content-site .main {
         width: 95%; } }
@@ -118,7 +142,8 @@ header {
       width: calc(100% - 90px);
       height: auto;
       margin-left: 80px;
-      margin-top: 45px; }
+      display: block;
+      position: relative; }
       .content-site .main .slider-block .slider-block-body {
         padding: 0 10px 15px 10px; }
         .content-site .main .slider-block .slider-block-body h1 {
@@ -177,7 +202,8 @@ header {
       padding: 0 10px; }
 
 .navbar-site {
-  width: 80%;
+  width: 100%;
+  max-width: 1000px;
   height: 80px;
   background: #8f8f8f05;
   border-radius: 10px;
@@ -211,6 +237,8 @@ header {
     border-bottom: 1px solid rgba(0, 0, 0, 0);
     -webkit-transition: 0.2s;
     transition: 0.2s; }
+    .navbar-site a.active {
+      border-bottom: 1px solid #000; }
     .navbar-site a:hover {
       border-bottom: 1px solid #000; }
   .navbar-site .navbar-logo {
