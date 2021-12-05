@@ -229,10 +229,9 @@ function goToActiveMain(element){
 function makeid(length) {
     let result = '';
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let charactersLength = characters.length;
+    let randomTextNumber = Math.floor(Math.random() * characters.length);
     for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() *
-            charactersLength));
+        result += characters[randomTextNumber];
     }
     return result;
 }
@@ -242,11 +241,10 @@ function randomNumberMinMax(min, max) {
 }
 
 function randomBg() {
-    var x = Math.floor(Math.random() * 256);
-    var y = Math.floor(Math.random() * 256);
-    var z = Math.floor(Math.random() * 256);
-    var bgColor = "rgb(" + x + "," + y + "," + z + ")";
-    return bgColor;
+    const x = Math.floor(Math.random() * 256);
+    const y = Math.floor(Math.random() * 256);
+    const z = Math.floor(Math.random() * 256);
+    return "rgb(" + x + "," + y + "," + z + ")";
 }
 
 const devTeams = [
@@ -325,4 +323,31 @@ function startAnimationToHeader(blockID, params, transTime) {
         }, time)
     }, time * 2.5)
 }
+
+
+
+const mainPricesNames = $('#main__prices .prices-body .left-block .names');
+const mainPricesAnimBlock = $('#main__prices .prices-body .left-block .anim-block');
+const infoBlocks = $('#main__prices .prices-body .right-block .info-block');
+
+mainPricesNames.on('click', function (){
+    console.log(this.offsetTop)
+    mainPricesNames.removeClass(activeClass);
+    $(this).addClass(activeClass);
+    mainPricesAnimBlock.css('top', `${this.offsetTop}px`);
+
+    const thisName = $(this).data('name');
+    infoBlocks.addClass('d-none');
+    infoBlocks.map((index, element) => {
+        const elm = $(element)
+        if(elm.children('h1').text() === thisName){
+            elm.removeClass('d-none')
+        }
+    })
+
+})
+
+
+
+// '#main__prices .prices-body .right-block .info-block'
 
